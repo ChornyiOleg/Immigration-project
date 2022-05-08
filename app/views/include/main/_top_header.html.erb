@@ -1,0 +1,65 @@
+<div class="top-header">
+  <div class="container">
+    <div class="top-header-main">
+      <div class="col-md-6 top-header-left">
+        <div class="drop">
+          <div class="box">
+            <select tabindex="4" class="dropdown drop">
+              <option value="" class="label">Portugal :</option>
+              <option value="1">Panama</option>
+              <option value="2">Montenegro</option>
+            </select>
+          </div>
+          <div class="box1">
+            <select tabindex="4" class="dropdown">
+              <option value="" class="label">English :</option>
+              <option value="1">English</option>
+              <option value="2">Russian</option>
+            </select>
+          </div>
+          <div class="btn-group">
+            <a class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <% if current_user.try(:admin?) %>
+                  <li>
+                    <%= link_to 'administrator', '#', style: "color: red" %>
+                  </li>
+                  <li>
+                    <%= link_to 'API', '/oauth/applications', style: "color: blue" %>
+                  </li>
+                <% end %>
+                <li>
+                  <a href="#">
+                    Welcome, <%= current_user.email %>
+                  </a>
+                </li>
+                <li>
+                  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+                </li>
+                <li>
+                  <%= link_to 'Edit', edit_user_registration_path %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to 'Sing In', new_user_session_path %>
+                </li>
+                <li>
+                  <%= link_to 'Registration', new_user_registration_path %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="col-md-6 top-header-left">
+
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+

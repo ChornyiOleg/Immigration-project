@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Immigration</title>
+    <title>Citizenship & Residency</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag 'bootstrap', media: 'all' %>
+    <%= stylesheet_link_tag 'flexslider', media: 'all' %>
+    <%= stylesheet_link_tag 'memenu', media: 'all' %>
+    <%= stylesheet_link_tag 'style', media: 'all' %>
+    <%= stylesheet_link_tag 'mystyle', media: 'all' %>
+
   </head>
 
   <body>
-    <%= yield %>
+  <div class="content">
+    <!--top-header-->
+    <%= render 'include/main/top_header' %>
+    <!--top-header-->
+
+    <!--notifications-->
+    <%= render 'include/main/notifications' %>
+    <!--notifications-->
+
+    <!--start-logo-->
+    <div class="logo">
+      <%= link_to root_path do %>
+        <h1>Citizenship & Residency</h1>
+      <% end %>
+    </div>
+    <!--start-logo-->
+
+    <!--bottom-header-->
+    <%= render 'include/main/bottom_header' %>
+    <!--bottom-header-->
+
+    <div class="content">
+      <%= yield %>
+    </div>
+
+    <!--footer-->
+    <%= render 'include/main/footer' %>
+    <!--footer-->
+
+  </div>
+  <script src="<%= asset_path 'application'%>"></script>
   </body>
 </html>
 
