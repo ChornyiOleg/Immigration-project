@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Residency</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+  <div class="content">
+    <!--top-header-->
+    <%= render 'include/home/top_header' %>
+    <!--top-header-->
+
+    <!--notifications-->
+    <%= render 'include/home/notifications' %>
+    <!--notifications-->
+
+    <!--bottom-header-->
+    <%= render 'include/home/bottom_header' %>
+    <!--bottom-header-->
+
+    <div>
+      <%= yield %>
+    </div>
+
+    <!--footer-->
+    <%= render 'include/home/footer' %>
+    <!--footer-->
+
+  </div>
+   </body>
+</html>
