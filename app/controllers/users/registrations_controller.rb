@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   # def destroy
-  #   super
+  # #   super
   # end
 
   # GET /resource/cancel
@@ -35,9 +35,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # cancel oauth signing in/up in the middle of the process,
   # removing all OAuth session data.
   # def cancel
+  #   user = User.where(confirmation_token: params[:confirmation_token]).first
+  #   user.delete if user
   #   super
   # end
-
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
