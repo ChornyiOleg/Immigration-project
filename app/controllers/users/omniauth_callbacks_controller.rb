@@ -12,19 +12,41 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # https://github.com/heartcombo/devise#omniauth
 
   # GET|POST /resource/auth/twitter
-  # def passthru
-  #   super
-  # end
+  def github
+    @user = User.find_for_oauth(request.env['omniauth.auth'])
+    if @user.persisted?
+      sign_in_and_redirect @user
+      set_flash_message(:notice, :success, kind: 'Github') if is_navigational_format?
+    else
+      flash[:error]='There was a problem signing you in through Github. Please register or try signing in later.'
+      redirect_to new_user_registration_url
+    end
+  end
 
-  # GET|POST /users/auth/twitter/callback
-  # def failure
-  #   super
-  # end
+  def facebook
+    @user = User.find_for_oauth(request.env['omniauth.auth'])
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication
+      if is_navigational_format?
+        set_flash_message(:notice, :success, kind: 'Facebook')
+      end
+    end
+  end
 
-  # protected
 
-  # The path used when OmniAuth fails
-  # def after_omniauth_failure_path_for(scope)
-  #   super(scope)
-  # end
+  def google_oauth2
+    @user = User.find_for_oauth(request.env['omniauth.auth'])
+    if @user.persisted?
+      sign_in_and_redirect @user
+      set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
+    else
+      flash[:error]='There was a problem signing you in through Google. Please register or try signing in later.'
+      redirect_to new_user_registration_url
+    end
+  end
+
+  def failure
+    flash[:error] = 'There was a problem signing you in. Please register or try signing in later.'
+    redirect_to new_user_registration_url
+  end
 end
